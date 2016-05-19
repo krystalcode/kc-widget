@@ -1,0 +1,68 @@
+<!--
+  @Issue(
+    "Support configuration of the grid's attributes"
+    type="improvement"
+    priority="normal"
+    labels="configuration management"
+  )
+  @Issue(
+    "Support responsive grid list/tile properties"
+    type="bug"
+    priority="normal"
+    labels="responsive design"
+  )
+-->
+<md-grid-list
+   md-cols="12"
+   md-gutter="12px"
+   md-row-height="1:1">
+
+  <md-grid-tile
+     ng-repeat="widget in widgets track by $index"
+     md-rowspan="{{widget.cardConfig.height}}"
+     md-colspan="{{widget.cardConfig.width}}">
+
+    <md-card>
+
+      <md-card-header ng-if="widget.cardConfig.title">
+
+        <md-card-header-text>
+          <span class="md-title">{{widget.cardConfig.title}}</span>
+          <span ng-if="widget.cardConfig.subtitle" class="md-subhead">{{widget.cardConfig.subtitle}}</span>
+        </md-card-header-text>
+
+      </md-card-header>
+
+      <md-card-content>
+
+        <!--
+          @Issue(
+            "Make the type of indicator configurable"
+            type="improvement"
+            priority="low"
+            labels="configuration management"
+          )
+        -->
+        <div ng-if="!dataReady">
+          <md-progress-linear md-mode="indeterminate"></md-progress-linear>
+        </div>
+
+        <div ng-if="dataReady">
+          <nvd3 options="widget.contentConfig.chart" data="widget.data"></nvd3>
+        </div>
+
+      </md-card-content>
+
+      <!--
+        @Issue(
+          "Add card actions such as edit/configure, delete, share, embed etc."
+          type="feature"
+          priority="normal"
+        )
+      -->
+
+    </md-card>
+
+  </md-grid-tile>
+
+</md-grid-list>
