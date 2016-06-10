@@ -1,0 +1,4 @@
+# Ignore distribution files.
+# We currently do not manage distributions. Instead we build through the parent
+# application only.
+/dist
