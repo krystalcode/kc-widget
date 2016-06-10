@@ -35,6 +35,14 @@ angular.module('kcWidget')
           // Trigger the loading indicator.
           scope.dataReady = false;
 
+          /**
+           * @Issue(
+           *   "Charts do not render when fetching data from the cache"
+           *   type="bug"
+           *   priority="low"
+           *   labels="performance"
+           * )
+           */
           kcWidgetApiFactory
             .group(newValue._id, newValue.filters, false)
             .then(function success(data) {
